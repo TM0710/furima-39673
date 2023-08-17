@@ -5,7 +5,7 @@
 | Column             | Type   | Options                   |
 | ------------------ | ------ | ------------------------- |
 | nickname           | string | null: false,              |
-| mail               | string | null: false, unique: true |
+| email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
 | last_name          | string | null: false               |
 | first_name         | string | null: false               |
@@ -20,17 +20,17 @@
 
 ## itemsテーブル
 
-| Column       | Type       | Options                        |
-| ------------ | ---------- | ------------------------------ |
-| name         | string     | null: false                    |
-| text         | text       | null: false                    |
-| category_id  | integer    | null: false                    |
-| condition_id | integer    | null: false                    |
-| charge_id    | integer    | null: false                    |
-| region_id    | integer    | null: false                    |
-| days_id      | integer    | null: false                    |
-| price        | integer    | null: false                    |
-| user         | references | null: false, foreign_key: true |
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| name            | string     | null: false                    |
+| description     | text       | null: false                    |
+| category_id     | integer    | null: false                    |
+| condition_id    | integer    | null: false                    |
+| charge_id       | integer    | null: false                    |
+| region_id       | integer    | null: false                    |
+| shipping_day_id | integer    | null: false                    |
+| price           | integer    | null: false                    |
+| user            | references | null: false, foreign_key: true |
 
 
 ### Association
@@ -59,8 +59,8 @@
 | region_id   | integer    | null: false                    |
 | city        | string     | null: false                    |
 | street      | string     | null: false                    |
-| building    | string     | null: false                    |
-| phon        | string     | null: false                    |
+| building    | string     |                                |
+| phone       | string     | null: false                    |
 | order       | references | null: false, foreign_key: true |
 
 ### Association
