@@ -5,4 +5,5 @@ class Item < ApplicationRecord
   belongs_to :charge
   belongs_to :region
   belongs_to :shipping_day
+  has_one_attached :image
 end
