@@ -1,9 +1,8 @@
 FactoryBot.define do
   factory :item do
-    
     name { Faker::Commerce.product_name }
     description { Faker::Lorem.sentence }
-    price { Faker::Number.between(from: 300, to: 9999999) }
+    price { Faker::Number.between(from: 300, to: 9_999_999) }
     category { Category.where.not(id: 1).sample }
     condition { Condition.where.not(id: 1).sample }
     charge { Charge.where.not(id: 1).sample }
