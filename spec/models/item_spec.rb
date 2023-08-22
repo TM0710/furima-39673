@@ -78,6 +78,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price is invalid. Input half-width characters')
       end
 
+      it 'priceが全角数値では保存できない' do
+        @item.price = '３００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width characters')
+      end
+
       it 'imageが空では保存できない' do
         @item.image = nil
         @item.valid?
