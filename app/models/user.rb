@@ -18,4 +18,6 @@ class User < ApplicationRecord
     validates :first_name_kana,
               format: { with: VALID_NAME_KANA_REGEX, message: 'is invalid. Input full-width katakana characters' }
   end
+
+  has_many :items
 end
