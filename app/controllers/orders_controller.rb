@@ -3,14 +3,14 @@ class OrdersController < ApplicationController
   
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    @order = Order.new
+    @order_shipping = OrderShipping.new
   end
 
   def create
-    @order = Order.new(order_params)
-    if @order.valid?
+    @order_shipping = OrderShipping.new(order_params)
+    if @order_shipping.valid?
       pay_item
-      @order.save
+      @order_shipping.save
       return redirect_to root_path
     else
       render 'index', status: :unprocessable_entity
@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit().merge(item_id: params[:item_id], user_id: current_user.id, token: params[:token])
+    params.require(:order_shipping).permit(:postal_code, :region_id, :city, :street, :building, :phone).merge(item_id: params[:item_id], user_id: current_user.id, token: params[:token])
   end
 
   def pay_item
