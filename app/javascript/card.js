@@ -1,6 +1,6 @@
 const pay = () => {
-  const publicKey = gon.public_key
-  const payjp = Payjp(publicKey)
+  const publicKey = gon.public_key;
+  const payjp = Payjp(publicKey);
   const form = document.getElementById('charge-form');
   const elements = payjp.elements();
   const numberElement = elements.create('cardNumber');

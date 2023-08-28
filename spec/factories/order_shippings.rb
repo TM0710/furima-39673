@@ -12,4 +12,3 @@ FactoryBot.define do
     token {"tok_abcdefghijk00000000000000000"}
   end
 end
-# bundle exec rspec spec/models/order_shipping_spec.rb
