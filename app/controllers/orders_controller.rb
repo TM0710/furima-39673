@@ -1,9 +1,14 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: :index
   before_action :set_item, only: [:index, :create]
   
   def index
-    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    @order_shipping = OrderShipping.new
+    if current_user.id != @item.user_id && @item.order == nil
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+      @order_shipping = OrderShipping.new
+    else
+      redirect_to root_path
+    end
   end
 
   def create
@@ -13,7 +18,7 @@ class OrdersController < ApplicationController
       @order_shipping.save
       return redirect_to root_path
     else
-      render 'index', status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
   end
 
