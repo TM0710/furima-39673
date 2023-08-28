@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to :region
   belongs_to :shipping_day
   has_one_attached :image
-  has_one :order
+  has_one :order, dependent: :destroy
 
   with_options presence: true do
     validates :image, :name, :description, :price
