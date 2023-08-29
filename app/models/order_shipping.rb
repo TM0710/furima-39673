@@ -10,9 +10,9 @@ class OrderShipping
     validates :region_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city
     validates :street
+    validates :phone, length: { minimum: 10, maximum: 11, message: 'is too short' },
+                      format: { with: /\A\d+\z/, message: 'is invalid. Input only number' }
   end
-  validates :phone, presence: true, length: { minimum: 10, maximum: 11, message: 'is too short' },
-                    format: { with: /\A\d+\z/, message: 'is invalid. Input only number' }
 
   def save
     order = Order.create(item_id:, user_id:)
