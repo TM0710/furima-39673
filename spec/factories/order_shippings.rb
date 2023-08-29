@@ -6,9 +6,6 @@ FactoryBot.define do
     street { Faker::Address.street_address }
     building { Faker::Address.secondary_address }
     phone { '09012345678' }
-    order_id { 1 }
-    item_id { 1 }
-    user_id { 1 }
     token { 'tok_abcdefghijk00000000000000000' }
   end
 end

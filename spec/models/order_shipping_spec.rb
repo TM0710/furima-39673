@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe OrderShipping, type: :model do
   before do
-    @order_shipping = FactoryBot.build(:order_shipping)
+    item = FactoryBot.create(:item)
+    order_user = FactoryBot.create(:user)
+    @order_shipping = FactoryBot.build(:order_shipping, user_id: order_user.id, item_id: item.id)
   end
 
   context '内容に問題ない場合' do
@@ -71,8 +73,14 @@ RSpec.describe OrderShipping, type: :model do
       expect(@order_shipping.errors.full_messages).to include("Phone can't be blank")
     end
 
-    it 'phoneが10文字未満では登録できないこと' do
+    it 'phoneが9桁以下では登録できないこと' do
       @order_shipping.phone = 123_456_789
+      @order_shipping.valid?
+      expect(@order_shipping.errors.full_messages).to include('Phone is too short')
+    end
+
+    it 'phoneが12桁以上では登録できないこと' do
+      @order_shipping.phone = 123_456_789_012
       @order_shipping.valid?
       expect(@order_shipping.errors.full_messages).to include('Phone is too short')
     end
