@@ -10,13 +10,13 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname, :birthday
-    validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'is invalid. Include both letters and numbers' }
-    validates :last_name, format: { with: VALID_NAME_REGEX, message: 'is invalid. Input full-width characters' }
-    validates :first_name, format: { with: VALID_NAME_REGEX, message: 'is invalid. Input full-width characters' }
+    validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'が無効です。文字と数字の両方を含めてください' }
+    validates :last_name, format: { with: VALID_NAME_REGEX, message: 'が無効です。全角文字を入力してください' }
+    validates :first_name, format: { with: VALID_NAME_REGEX, message: 'が無効です。全角文字を入力してください' }
     validates :last_name_kana,
-              format: { with: VALID_NAME_KANA_REGEX, message: 'is invalid. Input full-width katakana characters' }
+              format: { with: VALID_NAME_KANA_REGEX, message: 'が無効です。全角カタカナを入力してください' }
     validates :first_name_kana,
-              format: { with: VALID_NAME_KANA_REGEX, message: 'is invalid. Input full-width katakana characters' }
+              format: { with: VALID_NAME_KANA_REGEX, message: 'が無効です。全角カタカナを入力してください' }
   end
 
   has_many :items
