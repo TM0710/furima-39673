@@ -10,13 +10,20 @@ class Item < ApplicationRecord
   has_one :order, dependent: :destroy
 
   with_options presence: true do
-    validates :image, :name, :description, :price
+    validates :image
+    validates :name
+    validates :description
+    validates :price
   end
 
-  validates :price, inclusion: { in: 300..9_999_999, message: 'is out of setting range' },
-                    numericality: { only_integer: true, message: 'is invalid. Input half-width characters' }
+  validates :price, inclusion: { in: 300..9_999_999, message: 'が設定範囲外です' },
+                    numericality: { only_integer: true, message: 'が無効です。半角数値を入力してください' }
 
-  with_options numericality: { other_than: 1, message: "can't be blank" } do
-    validates :category_id, :condition_id, :charge_id, :region_id, :shipping_day_id
+  with_options numericality: { other_than: 1, message: "を入力してください" } do
+    validates :category_id
+    validates :condition_id
+    validates :charge_id
+    validates :region_id
+    validates :shipping_day_id
   end
 end
