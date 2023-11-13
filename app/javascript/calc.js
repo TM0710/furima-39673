@@ -1,4 +1,5 @@
 
+const calc = () => {
   const itemprice = document.getElementById("item-price");
   itemprice.addEventListener("input", () => {
     const itempriceVal = itemprice.value;
